@@ -1,0 +1,24 @@
+<%-
+   title="Carga del Certificado de Escrutinio"
+%>
+﻿<div id="CargaBody">
+	<form action="/carga/mesa" data-ajax=true data-ajax-method="POST" data-ajax-update="#Tabla" data-ajax-loading="#load">    
+	        <input type="text" name="mesa" id="mesa"/>
+	        <input type="submit" value="Seleccionar"/>   
+	        <div id="Tabla">
+	            Seleccione una Mesa
+	        </div>
+		<div id="load" style="display: none">
+            		<img src="/images/ajax-loader.gif" alt="Cargando"/>
+            		<br/>
+   	        	<label>Cargando..</label>
+        	</div>
+	</form>
+</div>
+
+
+
+     <script>
+         $("#mesa").focus();
+    </script>
+

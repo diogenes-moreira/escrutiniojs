@@ -21,4 +21,5 @@ module.exports = {
 	votoValido:"boolean"
   }
 
+
 };

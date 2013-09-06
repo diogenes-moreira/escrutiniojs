@@ -5,11 +5,69 @@
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link type="text/css" rel="stylesheet" media="all" href="/styles/Site.css" />
+    <script type="text/javascript" src="/js/jquery-1.7.1.min.js" ></script>
+    <script type="text/javascript" src="/js/jquery-ui-1.8.20.min.js" ></script>
+    <script type="text/javascript" src="/js/jquery.unobtrusive-ajax.js" ></script>
+    <script type="text/javascript" src="/js/modernizr-2.5.3.js"></script>
+    <style>
+            body {
+                font-size: 12px;
+            }
+            td {
+                padding: 3px;
+            }
+
+            input {
+                width: 30px;
+                padding: 3px;
+                font-size: 12px;
+                margin: 2px; 
+            }
+            input[type="submit"], input[type="button"], button {
+                background-color: #D3DCE0;
+                border: 1px solid #787878;
+                cursor: pointer;
+                font-weight: 600;
+                margin-right: 8px;
+                padding: 3px;
+                width: auto;
+            }
+
+          a {
+       
+                background-color: #D3DCE0;
+                border: 1px solid #787878;
+                cursor: pointer;
+                font-weight: 600;
+                margin-right: 8px;
+                padding: 3px;
+                width: auto;
+             }
+
+        </style>   
   </head>
-
   <body>
-    <%- body %>
-
+    <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <img src="/images/cabezal_web_cep_m3.png" />
+                </div>
+            </div>
+    </header>
+    <div id="body">
+    	<section class="content-wrapper main-content clear-fix">
+               <%- body %>
+        </section>
+       
+    </div>
+   <footer>
+   	<div class="content-wrapper">
+   	     <div class="float-left">
+   	       <p>&copy; Legislativas 2013</p>
+             </div>
+   	 </div>
+    </footer>	
     <!-- A few key dependencies, linked in order -->
 
     <!-- Bring in the socket.io client -->
@@ -23,3 +81,9 @@
 
     </body>
 </html>
+
+
+
+
+
+

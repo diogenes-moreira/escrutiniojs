@@ -20,7 +20,7 @@ module.exports = {
 	orden:"integer",
 	partidoPoliticoId:"integer",
 	/*identifica si se incorpora a la carga simplificada*/
-	simplificado:"integer"
+	simplificado:"boolean"
   }
 
 };
