@@ -1,3 +1,4 @@
+
 /**
  * InitilizerController
  *
@@ -13,16 +14,18 @@ var crearMesas = function (err, escuela){
 };
 
 
-var crearEscrutinio = function (lista,categoria){
-		 Mesa.find().done(function(err,mesa){
-				Escrutinio.create({mesaId: mesa.id, listaId:lista.id, categoriaId:categoria.id, cantidad:0, habilitado:true}).done(function(err){if(err) console.log(err)})
-			});
+var crearEscrutinio = function (lista,categoriaId){ 
+	Mesa.find().exec(function(err,mesas){
+		 _.each(mesas,function(mesa){
+			Escrutinio.create({mesaId: mesa.id, listaId:lista.id, categoriaId:categoriaId, cantidad:0, habilitado:true}).done(function(err){if(err) console.log(err)})
+		});
+	})
 };
 
 var crearEscrutinioExtranjero = function (lista,categoriaId){
 	Mesa.find().where({numero: {"<": 9000}}).exec(function(err,mesas){
 		_.each(mesas,function(mesa){
-				Escrutinio.create({mesaId: mesa.id, listaId:lista.id, categoriaId:categoriaId, cantidad:0, habilitado:true}).done(function(err){if(err) console.log(err)})
+			Escrutinio.create({mesaId: mesa.id, listaId:lista.id, categoriaId:categoriaId, cantidad:0, habilitado:true}).done(function(err){if(err) console.log(err)})
 		})
 	});
 };
@@ -210,9 +213,14 @@ module.exports = {
 						Escuela.create({nombre:"ESCUELA EP N°21", localidadId:localidad.id, direccion:"DARDO ROCHA Y CERRITO", codigo:"4622", circuito:"787A", mesaDesde:620, mesaHasta:633}).done(crearMesas);
 				});
 		});
-	Categoria.create({ nombre: "Diputados Nacionales",Orden: 1},{wait:true});
-	Categoria.create({ nombre: "Legisladores Provinciales", Orden: 2},{wait:true});
-	Categoria.create({ nombre: "Consejales y Consejeros Escolares", Orden: 3},{wait:true});
+	Categoria.create({ nombre: "Diputados Nacionales",Orden: 1}).done(function(err){if(err) console.log(err)});
+	Categoria.create({ nombre: "Legisladores Provinciales", Orden: 2}).done(function(err){if(err) console.log(err)});
+	Categoria.create({ nombre: "Consejales y Consejeros Escolares", Orden: 3}).done(function(err){if(err) console.log(err)});
+       res.send("ok");
+  },
+
+  etapa2: function(reg,res){
+	
 	PartidoPolitico.create({nombre:"GENTE EN ACCION - GEA",orden: 1,numero: "272",votoValido:true}).done(
 		function(err, partido) {
 			Lista.create({nombre:"LISTA AZUL",orden:1, partidoPoliticoId:partido.id,simplificado: false}).done(

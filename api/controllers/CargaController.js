@@ -20,14 +20,17 @@ module.exports = {
 	mesa: function(req, res) {
 		Mesa.findOne({numero: req.param('mesa')}).done(
 			function(err,mesa){ 
-				res.view({
-							mesa: mesa , 
-							layout: false})
+				res.view({mesa: mesa , layout: false})
 			
-				}
-			)
 		})
-	}
+	},
 
-
+	escrutinios: function(req, res){
+		Escrutinio.find({
+			mesaId: req.param("id"),
+			habilitado: true,			
+		}).exec(function(err, escrutinios){
+			res.json(escrutinios)
+		})
+	},
 };

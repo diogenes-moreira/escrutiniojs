@@ -35,7 +35,7 @@ module.exports.adapters = {
     module: 'sails-mysql',
     host: 'localhost',
     user: 'root',
-    password: '1sm43l.2004',
+    password: 'fzia9.ptu',
     database: 'Escrutinio'
   }
 };

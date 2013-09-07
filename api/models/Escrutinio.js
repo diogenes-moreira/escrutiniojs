@@ -11,7 +11,11 @@ module.exports = {
   adapter: 'sails-mysql',
 
   attributes: {
-	mesaId: "integer",
+	mesaId:{
+		type: 'integer',
+      		index: true
+	},	
+
 	listaId:"integer",
         categoriaId:"integer",
         cantidad:"integer",

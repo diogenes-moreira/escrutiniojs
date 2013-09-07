@@ -1,50 +1,28 @@
 ﻿	<form data-ajax=true data-ajax-method="POST" data-ajax-update="#Tabla" data-ajax-loading="#load">
-        <h4><% mesa %>&nbsp;(<%-mesa %>)</h4>
-        <table> 
-            <tr>
-                <th>N&deg;</th>
-                <th>Agrupaci&oacute;n Politica</th>
-                <th>N&deg;</th>
-                @foreach(var categoria in Model.CategoriasHabilitadas().OrderBy(cat => cat.Orden))
-                {
-                    <th>@categoria.Nombre</th>
-                }
-            </tr>
-            @foreach(var lista in Model.ListasHabilitadas().OrderBy(lis => lis.Orden))
-            {
-            
-                <tr>
-                    <td>
-                        @lista.Partido.Numero
-                    </td>
-                    <td>
-                        @lista.Partido.Nombre
-                    </td>
-                    <td>
-                        @lista.Nombre
-                    </td>
-                    @{   var prop = new Dictionary<string, object> { { "class", "carga" }, { "id", "primero" } };
-                   
-                        foreach (var categoria in Model.CategoriasHabilitadas().OrderBy(cat => cat.Orden))
-                        {
-                            <td>@{
-                                    try
-                                    {
-                                        var escrutinio = Model.Escrutinio(lista, categoria);
-                                        @Html.TextBox("escrutinio_" + escrutinio.Id, escrutinio.Cantidad, prop)
-                                        prop.Remove("id");
-                                    }
-                                    catch
-                                    {
-                                        <p class="noCargar"> No Cargar </p>
-                                    }
-                                }
-                            </td>
-                        }
-                    }
-                </tr>
-            }
-        </table>
+        <h4 data-bind="with: escuela"><span data-bind="text:nombre"></span>(<span data-bind="text:circuito"></span>) </h4>
+        	
+	<table data-bind='visible: categorias().length > 0'> 
+            	<thead>
+			<tr>
+				<th>N&deg;</th>
+				<th>Parido</th>
+				<th>Lista</th>
+				<!--ko foreach: categorias -->
+                		<th data-bind="text: nombre">N&deg;</th>
+				<!--/ko-->
+            		</tr>
+		</thead>
+		<tbody data-bind="foreach: listas">
+			<tr>
+				<td data-bind="text: $root.partido($data).numero"></td>
+				<td data-bind="text: $root.partido($data).nombre"></td>
+				<td data-bind="text: nombre"></td>
+				<!--ko foreach: $root.categorias -->
+				<td data-bind="html: $root.input($parent,$data)"></td>
+				<!--/ko -->
+			</tr>
+		</tbody>
+	</table>
         <input type="submit" value="Guardar"/>
     </form>
 <script>
@@ -70,5 +48,14 @@
         return true;
     });
     ;
-    $('#primero').focus();
+    
+
+    var baseUri = "<%- sails.config.baseUri %>";
+    var escuelaId =<%- mesa.escuelaId %>;
+    var mesaId =<%- mesa.id %>
+    var model = new ViewModel();
+    var primero = true;
+    ko.applyBindings(model);
+    model.load();
+    $('#primero').focus();  
 </script>
