@@ -1,5 +1,4 @@
-﻿	<form data-ajax=true data-ajax-method="POST" data-ajax-update="#Tabla" data-ajax-loading="#load">
-        <h4 data-bind="with: escuela"><span data-bind="text:nombre"></span>(<span data-bind="text:circuito"></span>) </h4>
+﻿        <h4 data-bind="with: escuela"><span data-bind="text:nombre"></span>(<span data-bind="text:circuito"></span>) </h4>
         	
 	<table data-bind='visible: categorias().length > 0'> 
             	<thead>
@@ -23,8 +22,7 @@
 			</tr>
 		</tbody>
 	</table>
-        <input type="submit" value="Guardar"/>
-    </form>
+        <input type="button" value="Guardar" data-bind="click: enviar"/>
 <script>
     $('.carga').focus(function () {
         $(this).select();
@@ -57,5 +55,6 @@
     var primero = true;
     ko.applyBindings(model);
     model.load();
+    model.bindData();
     $('#primero').focus();  
 </script>

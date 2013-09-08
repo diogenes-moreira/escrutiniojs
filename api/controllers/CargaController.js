@@ -5,6 +5,17 @@
  * @description	:: Contains logic for handling requests.
  */
 
+
+var actualizador = function(err, escrutinio){
+                                console.log("encontrado "+escrutinio.id);
+                                escrutinio.cantidad=this.valor;
+				escrutinio.save(function(err,esc){
+				if(err)console.log(err)});
+                        };
+
+
+
+
 module.exports = {
 
   /* e.g.
@@ -12,7 +23,9 @@ module.exports = {
     res.send('hello world!');
   }
   */
-  
+ 
+	actualizador: actualizador,
+	 
 	index: function(req, res) {
 		return res.view();
 	},
@@ -33,4 +46,8 @@ module.exports = {
 			res.json(escrutinios)
 		})
 	},
+	
+	registrar: function(req,res){	
+		res.view({layout: false});
+	}
 };

@@ -15,7 +15,7 @@ var ajax = function (url,cb){
         this.listas = ko.observableArray();
         this.partidos = ko.observableArray();
         this.categorias = ko.observableArray();
-        this.escrutinios = ko.observableArray();
+        this.escrutinios = new Array();
 	
 	this.partido = function(lista){
 		var len= self.partidos().length;
@@ -29,12 +29,16 @@ var ajax = function (url,cb){
 		var len= self.escrutinios().length;
 		var ids = "";
 		if(primero){
-			primero=false;
-			ids="id='primero' "
+			ids="primero";
 		}
-		for(var i=0;i<len;i++)
-			if(self.escrutinios()[i].listaId==lista.id && self.escrutinios()[i].categoriaId==categoria.id)
-				return "<input "+ ids + "type='text' class='carga' name='esc_"+ self.escrutinios()[i].id+"'/>"
+		for(var i=0;i<len;i++){
+			var escrutinio = self.escrutinios()[i];
+			if(escrutinio.listaId()==lista.id && escrutinio.categoriaId()==categoria.id){
+				if(!primero)
+					ids=name;
+				primero=false;
+				return "<input id='"+ ids + "' type='text' class='carga' name='"+i+"' />";
+			}}
 		return "";	
 	}; 
 	
@@ -43,8 +47,8 @@ var ajax = function (url,cb){
                         	self.escuela(data);
                 	});
                 ajax(baseUri+"carga/escrutinios/" +  mesaId,function(data) {
-                        	self.escrutinios(data);
-                	});
+                        self.escrutinios = ko.mapping.fromJS(data);
+                });
                 ajax(baseUri+"partidoPolitico", function(data) {
                         self.partidos(data);
                 });
@@ -58,6 +62,28 @@ var ajax = function (url,cb){
 			self.categorias(data);
                 });
         };
+	
+	this.bindData=function(){
+		$('.carga').each(function(){
+			ko.applyBindingsToNode(this, { value: self.escrutinios()[this.name].cantidad } );
+		})
+	}
+
+
+	this.enviar= function(){
+		$.each(self.escrutinios(),function(){			
+			$.ajax({
+				url:baseUri+'escrutinio/'+this.id(), 
+				async: false,
+				data: ko.toJSON(this),
+				type:'PUT',
+				dataType: "json",
+				contentType:"application/json; UTF-8"
+				});				
+		})
+		$('#Tabla').load(baseUri+"carga/registrar");
+		
+	}	
 
      };
 

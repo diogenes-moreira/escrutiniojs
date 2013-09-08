@@ -11,6 +11,7 @@
     <script type="text/javascript" src="<%- sails.config.baseUri %>js/jquery.unobtrusive-ajax.js" ></script>
     <script type="text/javascript" src="<%- sails.config.baseUri %>js/modernizr-2.5.3.js"></script>
     <script type="text/javascript" src="<%- sails.config.baseUri %>js/knockout-2.1.0.js"></script>
+    <script type="text/javascript" src="<%- sails.config.baseUri %>js/ko.mapping.js"></script>
     <script type="text/javascript" src="<%- sails.config.baseUri %>js/mesa.js"></script>
     <style>
             body {
@@ -70,16 +71,6 @@
              </div>
    	 </div>
     </footer>	
-    <!-- A few key dependencies, linked in order -->
-
-    <!-- Bring in the socket.io client -->
-    <script type="text/javascript" src="/js/socket.io.js"></script>
-    
-    <!-- then beef it up with some convenience logic for talking to Sails.js -->
-    <script type="text/javascript" src="/js/sails.io.js"></script>
-
-    <!-- listen on socket.io for incoming messages -->
-    <script type="text/javascript" src="/js/app.js"></script>
 
     </body>
 </html>

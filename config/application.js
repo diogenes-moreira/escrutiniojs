@@ -27,6 +27,6 @@ module.exports = {
 		level: 'info'
 	},
 
-	baseUri: '/',
+	baseUri: 'http://integra.dyndns-server.com:60080/',
 
 };
