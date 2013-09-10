@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Escrutiniojs : Es la version en Sails.js de la aplicación de escrutinio, la persistencia es relacional, usa mysql" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Escrutiniojs</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/diogenes-moreira/escrutiniojs">View on GitHub</a>
+
+          <h1 id="project_title">Escrutiniojs</h1>
+          <h2 id="project_tagline">Es la version en Sails.js de la aplicación de escrutinio, la persistencia es relacional, usa mysql</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/diogenes-moreira/escrutiniojs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/diogenes-moreira/escrutiniojs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Esto es una versión del sistema de escrutinio que usamos en Quilmes varias veces pero escrita con node.js
+No tiene seguridad porque hasta el momento no hizo falta.</p>
+
+<p>Deja los datos en una base relación, mysql, para después explotarlos con un cubito olap o alguna planilla de calculo.</p>
+
+<p>voy a dejar los pasos de instalación para alguna distro debian, usan la que quieran. el tema es llegar al npm, a partir de ahí es todo igual. Estoy partiendo de la base que ya se tiene instalado el mysql, sino es tan facil como hacer</p>
+
+<p><code>sudo apt-get install mysql-server</code></p>
+
+<p>arranquemos</p>
+
+<p><code>sudo apt-get install python-software-properties python g++ make
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs</code></p>
+
+<p>Luego hay que tirar los siguiente comandos</p>
+
+<p><code>sudo npm install -g sails
+sudo npm install -g mysql
+sudo npm install -g grunt 
+sudo npm install -g sails-mysql</code></p>
+
+<p>luego hacen checkout del proyecto y listo...</p>
+
+<p>en /conf/application.js estan las configuraciones de puerto y ruta donde escucha la aplicacion
+en /conf/adapters.js estan las conexiones de DB</p>
+
+<p>¿como se deploya? le dejo el link a <a href="http://sailsjs.org/#!">sails.js</a> </p>
+
+<p>hay un controler /initializer y /initializer/etapa2 que genera la configuración para usarser.. esto es valido para quilmes pero sirve como ejemplo.. cada distrito puede generarse el suyo y subirlo :)</p>
+
+<p>la carga de la planilla de escrutinio /carga</p>
+
+<p>!ojo! si el usuario con el que corre sails no tiene permisos de escritura sobre el directorio, generenle un /.temp con permisos para r/w para ese usuario. es lo que usa nodejs y sailsjs para sus archivos temporales.</p>
+
+<p>ya tiene todo para usar socket.io.js, pero no lo use porque no hizo falta.. para la plataforma esta prepara para usarse.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Escrutiniojs maintained by <a href="https://github.com/diogenes-moreira">diogenes-moreira</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
