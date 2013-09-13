@@ -12,43 +12,9 @@
     <script type="text/javascript" src="<%- sails.config.baseUri %>js/modernizr-2.5.3.js"></script>
     <script type="text/javascript" src="<%- sails.config.baseUri %>js/knockout-2.1.0.js"></script>
     <script type="text/javascript" src="<%- sails.config.baseUri %>js/ko.mapping.js"></script>
-    <script type="text/javascript" src="<%- sails.config.baseUri %>js/mesa.js"></script>
-    <style>
-            body {
-                font-size: 12px;
-            }
-            td {
-                padding: 3px;
-            }
-
-            input {
-                width: 30px;
-                padding: 3px;
-                font-size: 12px;
-                margin: 2px; 
-            }
-            input[type="submit"], input[type="button"], button {
-                background-color: #D3DCE0;
-                border: 1px solid #787878;
-                cursor: pointer;
-                font-weight: 600;
-                margin-right: 8px;
-                padding: 3px;
-                width: auto;
-            }
-
-          a {
-       
-                background-color: #D3DCE0;
-                border: 1px solid #787878;
-                cursor: pointer;
-                font-weight: 600;
-                margin-right: 8px;
-                padding: 3px;
-                width: auto;
-             }
-
-        </style>   
+    <script type="text/javascript">
+      var baseUri = "<%- sails.config.baseUri %>";
+    </script>   
   </head>
   <body>
     <header>

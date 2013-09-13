@@ -1,0 +1,63 @@
+<table id="tabla">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Orden</th>
+			<th>Accion</th>
+		</tr>
+	</thead>
+	<tbody >
+		<!--ko data-bind="foreach: categorias" -->
+		<tr>
+			<td data-bind="text: id"></td>
+			<td data-bind="text: nombre"></td>
+			<td data-bind="text: orden"></td>
+			<td>
+				<a href="#" data-bind="click:$root.removeCategoria">Borrar</a>
+			</td>
+		</tr>
+		<!--/ko-->
+		<tr data-bind="visible: add">
+			<td data-bind="text: id"></td>
+			<td data-bind="text: nombre"></td>
+			<td data-bind="text: orden"></td>
+			<td>
+				<a href="#" data-bind="click:$root.removeCategoria">Borrar</a>
+			</td>
+		<tr>	
+	</tbody>
+</table>
+
+<script type="text/javascript">
+var	vm = function(){
+	self = this;
+	this.categorias = ko.observableArray();
+	this.add = ko.observableArray(false);
+
+	this.edit();
+
+	this.removeCategoria = function(categoria){
+		$.ajax({
+			url: baseUri+'categoria/'+categoria.id,	
+			async: false,
+			type:'DELETE',
+			dataType: "json",
+			contentType:"application/json; UTF-8"});
+	};
+
+	this.refresh = function(){
+	$.ajax({
+		url: baseUri+'categoria',
+		dataType: 'json',
+		success: function(data){
+			self.categorias(data);
+		}});
+	};
+	this.refresh();
+}
+
+
+ko.applyBindings(new vm(), document.getElementById('tabla'));
+
+</script>

@@ -1,0 +1,32 @@
+<script type="text/javascript" src="<%- sails.config.baseUri %>js/underscore.js"></script>
+<script type="text/javascript" src="<%- sails.config.baseUri %>js/backbone-min.js"></script>
+<style type="text/css">
+	a {
+		cursor: pointer;
+	}
+</style>
+<ul id="menu">
+	<li><a  data-bind="click: cargaCategorias">Categorias</a></li>
+	<li><a href="">Escuelas</a></li>
+	<li><a href="">Listas</a></li>
+	<li><a href="">Localidades</a></li>
+	<li><a href="">Mesas</a></li>
+	<li><a href="">Partidos</a></li>
+	<li><a href="">Partidos Politicos</a></li>
+</ul>
+<div id="container">
+	
+</div>
+   
+<script type="text/javascript">
+
+	var baseUri = "<%- sails.config.baseUri %>";
+
+	var viewModel = function(){
+	
+		this.cargaCategorias= function(){
+			$("#container").load(baseUri+"abm/categoria");
+		};
+	}
+	ko.applyBindings(new viewModel());
+</script>

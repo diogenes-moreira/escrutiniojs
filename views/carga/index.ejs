@@ -1,7 +1,42 @@
 <%-
    title="Carga del Certificado de Escrutinio"
 %>
-﻿<div id="CargaBody">
+﻿<style>
+            body {
+                font-size: 12px;
+            }
+            td {
+                padding: 3px;
+            }
+
+            input {
+                width: 30px;
+                padding: 3px;
+                font-size: 12px;
+                margin: 2px; 
+            }
+            input[type="submit"], input[type="button"], button {
+                background-color: #D3DCE0;
+                border: 1px solid #787878;
+                cursor: pointer;
+                font-weight: 600;
+                margin-right: 8px;
+                padding: 3px;
+                width: auto;
+            }
+
+          a {
+       
+                background-color: #D3DCE0;
+                border: 1px solid #787878;
+                cursor: pointer;
+                font-weight: 600;
+                margin-right: 8px;
+                padding: 3px;
+                width: auto;
+             }
+</style>
+<div id="CargaBody">
 	<form action="/carga/mesa" data-ajax=true data-ajax-method="POST" data-ajax-update="#Tabla" data-ajax-loading="#load">    
 	        <input type="text" name="mesa" id="mesa"/>
 	        <input type="submit" value="Seleccionar"/>   

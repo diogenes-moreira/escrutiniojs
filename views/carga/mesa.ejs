@@ -23,6 +23,7 @@
 		</tbody>
 	</table>
         <input type="button" value="Guardar" data-bind="click: enviar"/>
+<script type="text/javascript" src="<%- sails.config.baseUri %>js/mesa.js"></script>
 <script>
     $('.carga').focus(function () {
         $(this).select();
@@ -47,8 +48,6 @@
     });
     ;
     
-
-    var baseUri = "<%- sails.config.baseUri %>";
     var escuelaId =<%- mesa.escuelaId %>;
     var mesaId =<%- mesa.id %>
     var model = new ViewModel();
